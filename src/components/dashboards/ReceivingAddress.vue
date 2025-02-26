@@ -24,7 +24,7 @@
                     </div>
                 </v-col>
             </v-row>
-            <v-row v-if="role === 'Entropy'">
+            <v-row v-if="role === 'Entropy' || role ==='Seed Phrase'">
                 <v-col cols="12">
                     <div class="mt-2">
                         <div>
@@ -34,7 +34,8 @@
                             <v-avatar class="bg-lighterror text-accent" size="20">
                                 <ArrowDownRightIcon class="text-error" size="15" />
                             </v-avatar>
-                            <h7 class="text-h6">{{ mnemonics }}</h7>
+                            <h7 v-if="role === 'Entropy'" class="text-h6">{{ mnemonics }} {{ entropy }}</h7>
+                            <h7 v-if="role === 'Seed Phrase'" class="text-h6"> {{ entropy }}</h7>
                         </div>
                     </div>
                 </v-col>

@@ -1,24 +1,20 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useRouter } from 'vue-router'; // Import useRouter for navigation
-import axios from 'axios'; // Import axios for API calls
+import { useRouter } from 'vue-router';
+import axios from 'axios';
 
 const checkbox = ref(false);
 const username = ref('');
 const password = ref('');
 const selectedRole= ref('Binary Seed');
-const roles= ref(['Binary Seed', 'Entropy', 'xPriv']);
-const router = useRouter(); // Initialize the router
+const roles= ref(['Binary Seed', 'Entropy', 'Seed Phrase','xPriv']);
+const router = useRouter();
 
-// Login method
 const login = async () => {
     try {
-        // Make API call to authenticate the user
-   
         const response = await axios.post('http://localhost:3545/wallet/derived-address', {
                 entropy: password.value,
                 role:selectedRole.value,
-          
         });
 
         if (response.status==200){
@@ -28,7 +24,6 @@ const login = async () => {
         } else alert("Please insert valid username and password");
     } catch (error) {
         console.error('Login failed:', error);
-        // You might want to display an error message to the user here
     }
 };
 </script>
@@ -92,8 +87,9 @@ const login = async () => {
             </v-col>
         </v-row>
     </div>
-</template>
 
+</template>
+ 
 <style>
 /* Your styles here */
 </style>
