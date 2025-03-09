@@ -33,7 +33,7 @@
     <!-- Popup Dialog -->
     <v-dialog v-model="isModalOpen" max-width="500">
       <v-card>
-        <!-- Dialog Title -->
+       
         <v-card-title>
           Transfer BTC
           <v-spacer></v-spacer>
@@ -42,10 +42,8 @@
           </v-btn>
         </v-card-title>
   
-        <!-- Dialog Content -->
         <v-card-text>
           <v-form @submit.prevent="submitForm">
-            <!-- Address Input -->
             <v-text-field
               v-model="formData.address"
               label="BTC Address"
@@ -53,7 +51,7 @@
               required
             ></v-text-field>
   
-            <!-- Amount Input -->
+
             <v-text-field
               v-model="formData.amount"
               label="Amount (Sats)"
@@ -64,7 +62,6 @@
           </v-form>
         </v-card-text>
   
-        <!-- Dialog Actions -->
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="primary" @click="closeModal">Cancel</v-btn>
@@ -82,7 +79,6 @@
   const theme = useTheme();
   const indigo = theme.current.value.colors.indigo;
   
-  // State for controlling the dialog visibility
   const isModalOpen = ref(false);
   
   // Form data
@@ -91,15 +87,12 @@
     amount: '',
   });
   
-  // Function to open the modal
   const openModal = () => {
     isModalOpen.value = true;
   };
   
-  // Function to close the modal
   const closeModal = () => {
     isModalOpen.value = false;
-    // Reset form data when closing the modal
     formData.value = { address: '', amount: '' };
   };
   
@@ -126,25 +119,22 @@
   }
 };
   
-  // State for API data
   const balance = ref(0);
   const usdValue = ref(0);
   
-  // Fetch data from API
   const fetchData = async () => {
     try {
       const response = await axios.post('http://localhost:3545/wallet/balance', {
         entropy: localStorage.getItem('tokenEntropy'),
         role:localStorage.getItem("selectedRole"),
       });
-      balance.value = response.data.balance; // Adjust according to your API response
-      usdValue.value = (response.data.balance * 96000) / 1e8; // Adjust according to your API response
+      balance.value = response.data.balance; 
+      usdValue.value = (response.data.balance * 96000) / 1e8; 
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
   
-  // Call fetchData on component mount
   onMounted(async () => {
     await fetchData();
   });
@@ -207,6 +197,6 @@
   
   <style scoped>
   .withbg {
-    background-color: #ffffff; /* Adjust background color as needed */
+    background-color: #ffffff; 
   }
   </style>

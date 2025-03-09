@@ -3,18 +3,14 @@ import { CircleIcon } from 'vue-tabler-icons';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
-// Define the Transaction interface with the required properties
 interface Transaction {
-    confirmed: string;         // Confirmation status
-    block_time: number;       // Block time
-    value: number;            // Amount of the transaction
-    type: string;             // Type of transaction (e.g., 'incoming', 'outgoing')
+    confirmed: string;         
+    block_time: number;       
+    value: number;            
+    type: string;             
 }
 
-// State to hold the transaction data
 const transactions = ref<Transaction[]>([]);
-
-// Function to fetch transaction data
 const fetchData = async () => {
    
     try {
@@ -23,15 +19,13 @@ const fetchData = async () => {
             role: localStorage.getItem("selectedRole"),
         });
 
-        // Assuming response.data contains the transactions array
-        transactions.value = response.data; // Assign the fetched data to the transactions ref
+        transactions.value = response.data; 
       
     } catch (error) {
         console.error('Error fetching data:', error);
     }
 };
 
-// Call fetchData on component mount
 onMounted(async () => {
     await fetchData();
 });
@@ -71,11 +65,11 @@ onMounted(async () => {
         height: 35px;
     }
     .text-external {
-    color: green; /* Example color for incoming transactions */
+    color: green; 
 }
 
 .text-internal {
-    color: red; /* Example color for outgoing transactions */
+    color: red; 
 }
 }
 </style>

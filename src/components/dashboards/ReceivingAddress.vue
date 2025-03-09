@@ -60,7 +60,7 @@ const mnemonics = ref();
 const entropy = localStorage.getItem("tokenEntropy");
 const role = localStorage.getItem("selectedRole");
 
-// Fetch data from API
+
 const fetchData = async () => {
 
     try {
@@ -90,7 +90,6 @@ const fetchData = async () => {
     }
 };
 
-// Call fetchData on component mount
 onMounted(async () => {
     await fetchData();
 });
@@ -152,5 +151,5 @@ const areaChart = {
 </script>
 
 <style>
-/* Your styles here */
+
 </style>

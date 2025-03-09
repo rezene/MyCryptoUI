@@ -1,32 +1,28 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { productsCard } from '@/data/dashboard/dashboardData';
 
 const isModalOpen = ref(false);
 
-// Form data
 const formData = ref({
   address: '',
   amount: '',
 });
 
-// Function to open the modal
 const openModal = () => {
   isModalOpen.value = true;
 };
 
-// Function to close the modal
 const closeModal = () => {
   isModalOpen.value = false;
-  // Reset form data when closing the modal
   formData.value = { address: '', amount: '' };
 };
 
-// Function to handle form submission
 const submitForm = () => {
   if (formData.value.address && formData.value.amount) {
     alert(`Form submitted!\nAddress: ${formData.value.address}\nAmount: ${formData.value.amount}`);
     closeModal();
+    window.location.reload();
   } else {
     alert('Please fill out all fields.');
   }
@@ -99,6 +95,6 @@ const submitForm = () => {
 
 <style scoped>
 .withbg {
-  background-color: #ffffff; /* Adjust background color as needed */
+  background-color: #ffffff; 
 }
 </style>
